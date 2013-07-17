@@ -1,0 +1,13 @@
+<h1>Your Shortened URLs</h1>
+<table>
+<tr>
+<th>Description</th>
+<th>Shortened Url</th>
+</tr>
+  <% @urls.each do |url| %>
+<tr>
+<td><%= url.description %></td>
+<td><a href="/<%=url.shortened_url%>">http://<%= url.shortened_url %></a></td>
+</tr>
+<% end %>
+</table>
