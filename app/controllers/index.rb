@@ -11,6 +11,7 @@ end
 
 get '/:short_url' do
   url_data = Url.find_by_shortened_url(params[:short_url])
+  url_data.update_attributes(:clicks => url_data[:clicks] +1 )
   redirect to "#{url_data[:original_url]}"
 
 end
