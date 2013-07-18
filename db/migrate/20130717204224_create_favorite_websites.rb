@@ -5,5 +5,6 @@ class CreateFavoriteWebsites < ActiveRecord::Migration
       t.integer :url_id
 
       t.timestamps
+    end
   end
 end

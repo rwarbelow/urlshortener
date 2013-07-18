@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
   validates :password_hash , :presence => true
   validate :email_valid?
+  has_many :favorite_websites
   has_many :urls, :through => :favorite_websites
 
 
@@ -16,11 +17,12 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(email, password)
-   user = self.find_by_email(email)
-   if user && user.password == password
-    user
-  else
-    nil
+    user = self.find_by_email(email)
+    if user && user.password == password
+     user
+    else
+      nil
+    end
   end
 
   def email_valid?
@@ -28,5 +30,6 @@ class User < ActiveRecord::Base
       errors.add(:email, "Email is invalid")
     end
   end
-
 end
+
+
