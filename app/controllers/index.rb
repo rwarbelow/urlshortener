@@ -1,12 +1,18 @@
 get '/' do
+  @urls = Url.all
   # Look in app/views/index.erb
   erb :index
 end
 
 post '/urls' do 
-  Url.shorten(params)
-  @urls = Url.all
-  erb :list_urls
+  @new_url = Url.shorten(params)
+  if @new_url.save
+    redirect '/'
+  else
+    @errors = @new_url.errors.full_messages
+    @urls = Url.all
+    erb :index
+  end
 end
 
 get '/:short_url' do

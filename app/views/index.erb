@@ -1,7 +1,15 @@
+<% if @errors %>
+<%= erb :_errors %>
+<% end %>
+
 <div class="container">
   <form action="/urls" method="post">
-    <input type="text" name="url[original_url]" placeholder="enter URL here">
+    <input type="text" name="url[original_url]" placeholder="ex http://<website>">
     <input type="text" name="url[description]" placeholder="describe this link">
     <input type="submit" value="Let's make it short">
   </form>
 </div>
+
+<% if @urls %>
+  <%= erb :_list_urls %>
+<% end %>
