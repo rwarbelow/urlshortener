@@ -4,6 +4,8 @@ class Url < ActiveRecord::Base
   validate  :valid_url
   validates :shortened_url, :presence => true, :uniqueness => true
   validates :description, :presence => true
+  has_many :admirers, :class_name => "User", :dependent => :destroy
+
 
   include SecureRandom 
 
